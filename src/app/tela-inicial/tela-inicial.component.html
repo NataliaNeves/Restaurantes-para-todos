@@ -1,0 +1,104 @@
+<div class="wrapper fadeInDown">
+  <div class="fadeIn first mt-4">
+    <img src="./../../../assets/imagens/onde-comer.png" id="icon" alt="User Icon" />
+  </div>
+
+  <ul class="nav nav-tabs mt-4">
+    <li><a class="nav-item nav-link" (click)="listaRestaurante()" href="#">Restaurantes para você</a></li>
+    <li><a class="nav-item nav-link" (click)="trocaRestaurante()" href="#">Pagina do restaurante</a></li>
+    <li><a class="nav-item nav-link" (click)="trocaUsuario()" href="#">Pagina do usuário</a></li>
+  </ul>
+
+  <div  *ngIf="listagemRestaurante" class="card mt-4" style="width: 35rem;">
+    <div class="card-body">
+      <h5 class="card-title">Restaurante 1</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Descrição:</h6>
+      <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
+      <a href="#" class="card-link">Cardápio</a>
+      <a href="#" class="card-link">Contato</a>
+    </div>
+  </div>
+
+  <app-pagina-usuario *ngIf="paginaUsuario"></app-pagina-usuario>
+  <app-pagina-restaurante *ngIf="paginaRestaurante"></app-pagina-restaurante>
+</div>
+
+<div class="modal fade" id="incluirModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="incluirModalCliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editarModalCliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
