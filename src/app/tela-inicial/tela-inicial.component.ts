@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-tela-inicial',
@@ -52,49 +53,102 @@ export class TelaInicialComponent implements OnInit {
       }
     };
 
-  constructor() { }
+  getAllrestaurante: {
+    cardapios: [
+      {
+        itens: {
+          nome: string,
+          restricoes: [
+            'NAO_CONTEM_GLUTEN' |
+            'NAO_CONTEM_LACTOSE' |
+            'VEGANO' |
+            'VEGETARIANO'
+          ]
+        }[];
+        nome: string
+      }
+    ],
+    id: string,
+    localizacao: {
+      bairro: string,
+      cidade: string,
+      estado: string,
+      rua: string
+    },
+    nome: string
+  }[] = null;
 
-  ngOnInit() { }
+constructor(
+  public httpClient: HttpClient
+) { }
 
-  trocaUsuario() {
-    this.paginaUsuario = true;
-    this.listagemRestaurante = false;
-    this.paginaRestaurante = false;
-  }
+ngOnInit() {
+  this.httpClient.get('http://localhost:8081/restaurante').subscribe(
+    (teste: {cardapios: [
+      {
+        itens: {
+          nome: string,
+          restricoes: [
+            'NAO_CONTEM_GLUTEN' |
+            'NAO_CONTEM_LACTOSE' |
+            'VEGANO' |
+            'VEGETARIANO'
+          ]
+        }[];
+        nome: string
+      }
+    ],
+    id: string,
+    localizacao: {
+      bairro: string,
+      cidade: string,
+      estado: string,
+      rua: string
+    },
+    nome: string
+  }[]) => { this.getAllrestaurante = teste; }
+  );
+}
 
-  trocaRestaurante() {
-    this.paginaRestaurante = true;
-    this.paginaUsuario = false;
-    this.listagemRestaurante = false;
-  }
+trocaUsuario() {
+  this.paginaUsuario = true;
+  this.listagemRestaurante = false;
+  this.paginaRestaurante = false;
+}
 
-  listaRestaurante() {
-    this.listagemRestaurante = true;
-    this.paginaUsuario = false;
-    this.paginaRestaurante = false;
-  }
+trocaRestaurante() {
+  this.paginaRestaurante = true;
+  this.paginaUsuario = false;
+  this.listagemRestaurante = false;
+}
 
-  salvarUsuario() {
-    console.log('teste');
-  }
+listaRestaurante() {
+  this.listagemRestaurante = true;
+  this.paginaUsuario = false;
+  this.paginaRestaurante = false;
+}
 
-  excluirUsuario() {
-    console.log('teste');
-  }
+salvarUsuario() {
+  console.log('teste');
+}
 
-  salvarRestaurante() {
-    console.log('teste');
-  }
+excluirUsuario() {
+  console.log('teste');
+}
 
-  excluirRestaurante() {
-    console.log('teste');
-  }
+salvarRestaurante() {
+  console.log('teste');
+}
 
-  adicionar() {
-    this.cardapio.cardapios.itens.push({
-      nome: '',
-      restricoes: null
-    });
-  }
+excluirRestaurante() {
+  console.log('teste');
+}
+
+adicionar() {
+  this.cardapio.cardapios.itens.push({
+    nome: '',
+    restricoes: null
+  });
+}
 
 }

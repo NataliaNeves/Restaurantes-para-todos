@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { TelaInicialComponent } from './tela-inicial/tela-inicial.component';
 import { PaginaRestauranteComponent } from './pagina-restaurante/pagina-restaurante.component';
 import { PaginaUsuarioComponent } from './pagina-usuario/pagina-usuario.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { PaginaUsuarioComponent } from './pagina-usuario/pagina-usuario.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   bootstrap: [
     AppComponent

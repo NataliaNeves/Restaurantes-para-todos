@@ -12,11 +12,28 @@
   <div *ngIf="listagemRestaurante" class="card mt-4" style="width: 35rem;">
     <div class="card-body">
       <h5 class="card-title">Restaurante 1</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Descrição:</h6>
-      <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do
-        card.</p>
-      <a href="#" class="card-link">Cardápio</a>
-      <a href="#" class="card-link">Contato</a>
+      <h6 class="card-subtitle mb-2">Cardápio:</h6>
+      <!-- <table class="table">
+        <tbody>
+          <tr>
+            <td> {{}} </td>
+          </tr>
+          <tr>
+            <td> {{}} </td>
+          </tr>
+        </tbody>
+      </table>
+      <h6 class="card-subtitle mb-2">Contato:</h6>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td> {{}} </td>
+          </tr>
+          <tr>
+            <td> {{}} </td>
+          </tr>
+        </tbody>
+      </table> -->
     </div>
   </div>
 
@@ -38,8 +55,8 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Nome: </span>
           </div>
-          <input ngDefaultControl name="nomeRestaurante" [(ngModel)]="nomeRestaurante" type="text" class="form-control" placeholder="Informe o nome"
-            aria-label="nome" aria-describedby="basic-addon1">
+          <input ngDefaultControl name="nomeRestaurante" [(ngModel)]="nomeRestaurante" type="text" class="form-control"
+            placeholder="Informe o nome" aria-label="nome" aria-describedby="basic-addon1">
         </div>
 
         <p>Localicação: </p>
@@ -48,32 +65,32 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Rua: </span>
           </div>
-          <input ngDefaultControl name="rua" [(ngModel)]="localizacao.rua" type="text" class="form-control" placeholder="Informe a rua"
-            aria-label="nome" aria-describedby="basic-addon1">
+          <input ngDefaultControl name="rua" [(ngModel)]="localizacao.rua" type="text" class="form-control"
+            placeholder="Informe a rua" aria-label="nome" aria-describedby="basic-addon1">
         </div>
 
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Bairro: </span>
           </div>
-          <input ngDefaultControl name="bairro" [(ngModel)]="localizacao.bairro" type="text" class="form-control" placeholder="Informe o bairro"
-            aria-label="nome" aria-describedby="basic-addon1">
+          <input ngDefaultControl name="bairro" [(ngModel)]="localizacao.bairro" type="text" class="form-control"
+            placeholder="Informe o bairro" aria-label="nome" aria-describedby="basic-addon1">
         </div>
 
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Cidade: </span>
           </div>
-          <input ngDefaultControl name="cidade" [(ngModel)]="localizacao.cidade" type="text" class="form-control" placeholder="Informe a cidade"
-            aria-label="nome" aria-describedby="basic-addon1">
+          <input ngDefaultControl name="cidade" [(ngModel)]="localizacao.cidade" type="text" class="form-control"
+            placeholder="Informe a cidade" aria-label="nome" aria-describedby="basic-addon1">
         </div>
 
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Estado: </span>
           </div>
-          <input ngDefaultControl name="estado" [(ngModel)]="localizacao.estado" type="text" class="form-control" placeholder="Informe o estado"
-            aria-label="nome" aria-describedby="basic-addon1">
+          <input ngDefaultControl name="estado" [(ngModel)]="localizacao.estado" type="text" class="form-control"
+            placeholder="Informe o estado" aria-label="nome" aria-describedby="basic-addon1">
         </div>
 
         <p>Cardapio: </p>
@@ -83,8 +100,8 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Nome: </span>
             </div>
-            <input ngDefaultControl name="nomeCardapio" [(ngModel)]="cardapio.nome" type="text" class="form-control" placeholder="Adicionar nome do item do cardápio"
-              aria-label="Username" aria-describedby="basic-addon1">
+            <input ngDefaultControl name="nomeCardapio" [(ngModel)]="cardapio.nome" type="text" class="form-control"
+              placeholder="Adicionar nome do item do cardápio" aria-label="Username" aria-describedby="basic-addon1">
           </div>
 
           <div class="col-md-12">
@@ -108,11 +125,10 @@
               <label class="ml-1" for="VEGETARIANO">Vegerariano</label>
             </div>
           </div>
-
-          <button class="btn btn-primary btn-sm" (click)="adicionar()" type="button">
-            Adicionar item
-          </button>
         </div>
+        <button class="btn btn-primary btn-sm" (click)="adicionar()" type="button">
+          Adicionar item
+        </button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -136,16 +152,16 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Nome: </span>
           </div>
-          <input ngDefaultControl name="nomeUsuario" [(ngModel)]="nomeUsuario" type="text" class="form-control" placeholder="Informe o nome"
-            aria-label="nome" aria-describedby="basic-addon1">
+          <input ngDefaultControl name="nomeUsuario" [(ngModel)]="nomeUsuario" type="text" class="form-control"
+            placeholder="Informe o nome" aria-label="nome" aria-describedby="basic-addon1">
         </div>
 
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Email: </span>
           </div>
-          <input ngDefaultControl name="usuario" [(ngModel)]="emailUsuario" type="text" class="form-control" placeholder="Informe o email"
-            aria-label="Username" aria-describedby="basic-addon1">
+          <input ngDefaultControl name="usuario" [(ngModel)]="emailUsuario" type="text" class="form-control"
+            placeholder="Informe o email" aria-label="Username" aria-describedby="basic-addon1">
         </div>
       </div>
       <div class="modal-footer">
@@ -169,8 +185,8 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Email: </span>
             </div>
-            <input ngDefaultControl name="emailUsuario" [(ngModel)]="emailUsuario" type="text" class="form-control" placeholder="Informe o email"
-              aria-label="Username" aria-describedby="basic-addon1">
+            <input ngDefaultControl name="emailUsuario" [(ngModel)]="emailUsuario" type="text" class="form-control"
+              placeholder="Informe o email" aria-label="Username" aria-describedby="basic-addon1">
           </div>
         </div>
         <div class="modal-footer">
