@@ -9,32 +9,34 @@
     <li><a class="nav-item nav-link" (click)="trocaUsuario()" href="#">Pagina do usuário</a></li>
   </ul>
 
-  <div *ngIf="listagemRestaurante" class="card mt-4" style="width: 35rem;">
-    <div class="card-body">
-      <h5 class="card-title">Restaurante 1</h5>
-      <h6 class="card-subtitle mb-2">Cardápio:</h6>
-      <!-- <table class="table">
-        <tbody>
-          <tr>
-            <td> {{}} </td>
-          </tr>
-          <tr>
-            <td> {{}} </td>
-          </tr>
-        </tbody>
-      </table>
-      <h6 class="card-subtitle mb-2">Contato:</h6>
-      <table class="table">
-        <tbody>
-          <tr>
-            <td> {{}} </td>
-          </tr>
-          <tr>
-            <td> {{}} </td>
-          </tr>
-        </tbody>
-      </table> -->
+  <div *ngIf="listagemRestaurante">
+    <div *ngFor="let restaurante of getAllrestaurante" class="card mt-4" style="width: 35rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{ restaurante.nome }}</h5>
+        <h6 class="card-subtitle mb-2">Cardápio: {{ restaurante.cardapios.nome }} </h6>
+
+        <div *ngFor="let cardapio of restaurante.cardapios">
+          <div *ngFor="let item of cardapio.itens">
+            <p>Item: </p>
+            <p class="text-muted ml-1"> {{ item.nome }} </p>
+          </div>
+        </div>
+        <h6 class="card-subtitle mb-2 mt-2">Contato:</h6>
+        <p class="text-muted ml-1"> Bairro: {{ restaurante.localizacao.bairro }} </p>
+        <p class="text-muted ml-1"> Rua: {{ restaurante.localizacao.rua }} </p>
+        <p class="text-muted ml-1"> Estado: {{ restaurante.localizacao.estado }} </p>
+        <p class="text-muted ml-1"> Cidade: {{ restaurante.localizacao.cidade }} </p>
+        <p class="mt-2"> Restrições: </p>
+        <p class="text-muted ml-1" *ngFor="let restricao of restaurante.restricoes">{{ literal(restricao) }} </p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" (click)="editarRestaurante(restaurante)" class="btn btn-secondary" data-toggle="modal"
+          data-target="#incluirModal">Editar</button>
+        <button type="button" (click)="excluirRestaurante(restaurante)" class="btn btn-primary">Excluir</button>
+      </div>
     </div>
+
   </div>
 
   <app-pagina-usuario *ngIf="paginaUsuario"></app-pagina-usuario>
@@ -57,6 +59,30 @@
           </div>
           <input ngDefaultControl name="nomeRestaurante" [(ngModel)]="nomeRestaurante" type="text" class="form-control"
             placeholder="Informe o nome" aria-label="nome" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="col-md-12">
+          <div>
+            <input class="ml-1" type="checkbox" [(ngModel)]="naoContemGluten" name="NAO_CONTEM_GLUTEN"
+              id="NAO_CONTEM_GLUTEN" />
+            <label class="ml-1" for="NAO_CONTEM_GLUTEN">Não contém gluten</label>
+          </div>
+
+          <div>
+            <input class="ml-1" type="checkbox" [(ngModel)]="naoContemLactose" name="NAO_CONTEM_LACTOSE"
+              id="NAO_CONTEM_LACTOSE" />
+            <label class="ml-1" class="ml-1" for="NAO_CONTEM_LACTOSE">Não contem lactose</label>
+          </div>
+
+          <div>
+            <input class="ml-1" type="checkbox" [(ngModel)]="vegano" name="VEGANO" id="VEGANO" />
+            <label class="ml-1" for="VEGANO">Vegano</label>
+          </div>
+
+          <div>
+            <input class="ml-1" type="checkbox" [(ngModel)]="vegetariano" name="VEGETARIANO" id="VEGETARIANO" />
+            <label class="ml-1" for="VEGETARIANO">Vegerariano</label>
+          </div>
         </div>
 
         <p>Localicação: </p>
@@ -95,35 +121,21 @@
 
         <p>Cardapio: </p>
 
-        <div *ngFor="let cardapio of cardapio.cardapios.itens; let i = index" class="po-row po-mt-2">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Nome do cardapio: </span>
+          </div>
+          <input ngDefaultControl name="nomeRestaurante" [(ngModel)]="cardapio.nome" type="text" class="form-control"
+            placeholder="Informe o nome" aria-label="nome" aria-describedby="basic-addon1">
+        </div>
+
+        <div *ngFor="let item of cardapio.itens; let i = index" class="po-row po-mt-2">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Nome: </span>
             </div>
-            <input ngDefaultControl name="nomeCardapio" [(ngModel)]="cardapio.nome" type="text" class="form-control"
+            <input ngDefaultControl name="nomeCardapio" [(ngModel)]="item.nome" type="text" class="form-control"
               placeholder="Adicionar nome do item do cardápio" aria-label="Username" aria-describedby="basic-addon1">
-          </div>
-
-          <div class="col-md-12">
-            <div>
-              <input class="ml-1" type="checkbox" name="NAO_CONTEM_GLUTEN" id="NAO_CONTEM_GLUTEN" />
-              <label class="ml-1" for="NAO_CONTEM_GLUTEN">Não contém gluten</label>
-            </div>
-
-            <div>
-              <input class="ml-1" type="checkbox" name="NAO_CONTEM_LACTOSE" id="NAO_CONTEM_LACTOSE" />
-              <label class="ml-1" class="ml-1" for="NAO_CONTEM_LACTOSE">Não contem lactose</label>
-            </div>
-
-            <div>
-              <input class="ml-1" type="checkbox" name="VEGANO" id="VEGANO" />
-              <label class="ml-1" for="VEGANO">Vegano</label>
-            </div>
-
-            <div>
-              <input class="ml-1" type="checkbox" name="VEGETARIANO" id="VEGETARIANO" />
-              <label class="ml-1" for="VEGETARIANO">Vegerariano</label>
-            </div>
           </div>
         </div>
         <button class="btn btn-primary btn-sm" (click)="adicionar()" type="button">
@@ -132,7 +144,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Salvar</button>
+        <button type="button" (click)="salvarRestaurante()" data-dismiss="modal" class="btn btn-primary">Salvar</button>
       </div>
     </div>
   </div>
@@ -147,6 +159,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class="modal-body">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -164,35 +177,66 @@
             placeholder="Informe o email" aria-label="Username" aria-describedby="basic-addon1">
         </div>
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" (click)="salvarUsuario()" class="btn btn-primary">Salvar</button>
+        <button type="button" (click)="salvarUsuario()" data-dismiss="modal" class="btn btn-primary">Salvar</button>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="modal fade" id="excluirModalCliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Excluir usuário</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">Email: </span>
-            </div>
-            <input ngDefaultControl name="emailUsuario" [(ngModel)]="emailUsuario" type="text" class="form-control"
-              placeholder="Informe o email" aria-label="Username" aria-describedby="basic-addon1">
+
+<div class="modal fade" id="excluirModalCliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Excluir usuário</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Email: </span>
           </div>
+          <input ngDefaultControl name="emailUsuario" [(ngModel)]="emailUsuario" type="text" class="form-control"
+            placeholder="Informe o email" aria-label="Username" aria-describedby="basic-addon1">
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="button" (click)="excluirUsuario()" class="btn btn-primary">Excluir</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" (click)="excluirUsuario()" data-dismiss="modal" class="btn btn-primary">Excluir</button>
       </div>
     </div>
   </div>
+</div>
+
+<div class="modal fade" id="excluirModalRestaurante" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Excluir restaurante</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Codigo: </span>
+          </div>
+          <input ngDefaultControl name="emailUsuario" [(ngModel)]="emailUsuario" type="text" class="form-control"
+            placeholder="Informe o email" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" (click)="excluirRestaurante()" data-dismiss="modal"
+          class="btn btn-primary">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>
