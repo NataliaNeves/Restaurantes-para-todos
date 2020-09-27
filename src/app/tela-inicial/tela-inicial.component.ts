@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tela-inicial',
@@ -12,9 +11,50 @@ export class TelaInicialComponent implements OnInit {
   paginaUsuario = false;
   listagemRestaurante = true;
 
-  constructor() {}
+  nomeUsuario = '';
+  emailUsuario = '';
+  nomeRestaurante = '';
+  cardapio: {
+    cardapios: {
+      nome: string,
+      itens: {
+        nome: string
+        restricoes:
+        'NAO_CONTEM_GLUTEN' |
+        'NAO_CONTEM_LACTOSE' |
+        'VEGANO' |
+        'VEGETARIANO'
+      }[]
+    }
+  } = {
+      cardapios: {
+        nome: null,
+        itens: [{
+          nome: '',
+          restricoes: null
+        }]
+      }
+    };
 
-  ngOnInit() {}
+  localizacao: {
+    localizacao: {
+      rua: string,
+      bairro: string,
+      cidade: string,
+      estado: string
+    }
+  } = {
+      localizacao: {
+        rua: null,
+        bairro: null,
+        cidade: null,
+        estado: null
+      }
+    };
+
+  constructor() { }
+
+  ngOnInit() { }
 
   trocaUsuario() {
     this.paginaUsuario = true;
@@ -32,6 +72,29 @@ export class TelaInicialComponent implements OnInit {
     this.listagemRestaurante = true;
     this.paginaUsuario = false;
     this.paginaRestaurante = false;
+  }
+
+  salvarUsuario() {
+    console.log('teste');
+  }
+
+  excluirUsuario() {
+    console.log('teste');
+  }
+
+  salvarRestaurante() {
+    console.log('teste');
+  }
+
+  excluirRestaurante() {
+    console.log('teste');
+  }
+
+  adicionar() {
+    this.cardapio.cardapios.itens.push({
+      nome: '',
+      restricoes: null
+    });
   }
 
 }
